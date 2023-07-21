@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="weatherans">
+        {% if current_user.is_authenticated %}
+        <h1 align="center">Здравствуйте, {{current_user.name}}!</h1>
+        <h1 align="center">Погода в городе {{ town }}</h1>
+        {% else %}
+        <h1>Погода в городе {{ town }}</h1>
+        {% endif %}
+        <img width="100" height="100" src="https://openweathermap.org/img/wn/{{ data['icon'] }}@2x.png">
+
+
+                  <h1>Температура </h1>
+                  <h3>  {{ data['temp'] }} &deg C </h3>
+
+
+                  <h1>Скорость ветра</h1>
+                  <h3>  {{ data['wind'] }} метров в секунду</h3>
+
+                  <h1>Давление</h1>
+                  <h3>  {{ data['pressure'] }} кПа</h3>
+
+    </div>
+<br>
+<br>
+    <div class="container">
+      <h2>{{ data }}</h2>
+    </div>
+    <h3>Температура - {{ temperature }} &deg градусов</h3>
+
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="weather">
+        {% if current_user.is_authenticated %}
+            <h1 align="center">Здравствуйте, {{current_user.name}}!</h1>
+        {% endif %}
+        <form method="post" class="login_form bigger">
+            <input type="text" name="town" class="form-control" placeholder="Город"><br>
+            <button type="submit" class="btn btn-primary">Погода</button>
+        </form>
+    </div>
+{% endblock %}

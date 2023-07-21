@@ -1,0 +1,62 @@
+<!--base.html - базовый шаблон-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link type="image/x-icon" href="../static/images/icons8Bee.png" rel="shortcut icon">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+
+</head>
+
+<body>
+    <div class="main">
+        <div class="preview">
+            <div class="previewimage previewlayer"></div>
+            <div class="previewimage2"></div>
+            <div class="header previewlayer">
+                <!-- здесь header-->
+                <div class="logoWrapper">
+                    <a class="bigger" title="Главная" href="/index"><img src="../static/images/icons8Bee4.png" class="bigger" alt=""></a>
+                </div>
+                <div class="nav">
+                    <div class="navItem"><a class="bigger" href="/weather_form">Погода</a></div>
+                    {% if current_user.is_authenticated %}
+                    <div class="navItem"><a class="bigger" href="/weather_form">Полезная информация</a></div>
+                    {% else %}
+                    <div class="navItem"><a class="bigger" href="/register">Регистрация</a></div>
+                    {% endif %}
+                </div>
+                <div class="wrapperAccount">
+                    {% if current_user.is_authenticated %}
+                    <a class="bigger" title="Кликнуть для выхода" href="/logout"><img src="../static/images/icons8ACC100.png"></a>
+                    <div class="navItem"><a class="bigger" href="/logout">{{current_user.name}} (Выйти)</a></div>
+                    {% else %}
+                    <a class="bigger" title="Кликнуть для входа" href="/login"><img src="../static/images/icons8ACC100.png"></a>
+                    <div class="navItem"><a class="bigger" href="/login">Войти</a></div>
+                    {% endif %}
+                </div>
+            </div>
+
+
+            {% block content %}{% endblock %}
+
+
+
+            <footer>
+                <div class="cube">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+
+</body>
+</html>

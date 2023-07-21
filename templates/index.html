@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+    {% block content %}
+    <div class="titleWraper previewlayer">
+        <div class="title">
+            <div class="disappear">
+              <span>Н</span> <span>О</span> <span>В</span> <span>О</span> <span>С</span> <span>Т</span> <span>И</span>
+                <span> </span> <span>Д</span> <span>Л</span> <span>Я</span> <span> </span> <span>В</span> <span>С</span>
+                <span>Е</span> <span>Х</span>
+            </div>
+        </div>
+
+        {% for item in news %}
+        <div class="titleDescription">ДОБРЫХ ЛЮДЕЙ</div>
+        <div class="col border rounded">
+            <h2>{{ item.title }}</h2>
+            <div class="h4">{{ item.content }}</div>
+            <div class="h4">{{ item.user.name }} - {{ item.created_date.strftime('%d-%m-%Y %H:%M') }}</div>
+            {% if current_user.is_authenticated and current_user == item.user %}
+                <a href="/news/{{ item.id }}" class="btn btn-sm btn-warning">Изменить</a>&nbsp; &nbsp;
+                <a href="/news_del/{{ item.id }}" title="Удалить новость: &laquo;{{item.title}}&raquo;"
+                   class="btn btn-sm btn-danger"
+                   onclick="return confirm('Вы действительно хотите удалить новость &laquo;{{item.title}}&raquo;?')">Удалить</a>
+        </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+    {% if current_user.is_authenticated %}
+        <br><a href="news" class="btn btn-secondary">Добавить новость</a><br><br>
+    {% endif %}
+{% endblock %}
